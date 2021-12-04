@@ -28,5 +28,41 @@ namespace WebApiAutores.Controllers
             await dbContext.SaveChangesAsync();
             return Ok();
         }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Put(Autor autor, int id)
+        {
+            var existe = await dbContext.Autores.FindAsync(id);
+
+            if (existe == null)
+            {
+                return NotFound();
+            }
+
+            if (autor.Id != id)
+            {
+                return BadRequest("El id del autor no coincide con el id de la URL");
+            }
+            dbContext.Update(autor);
+            _ = await dbContext.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var existe = await dbContext.Autores.FindAsync(id);
+
+            if (existe == null)
+            {
+                return NotFound();
+            }
+
+            dbContext.Autores.Remove(existe);
+            await dbContext.SaveChangesAsync();
+
+            return NoContent();
+        }
+
     }
 }
