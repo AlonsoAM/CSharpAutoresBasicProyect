@@ -20,6 +20,12 @@ namespace WebApiAutores.Controllers
         {
             return await dbContext.Autores.Include(x => x.Libros).ToListAsync();
         }
+
+        [HttpGet("first")]
+        public async Task<ActionResult<Autor>> FirstAutor()
+        {
+            return await dbContext.Autores.FirstOrDefaultAsync();
+        }
           
         [HttpPost]
         public async Task<ActionResult> Post(Autor autor)
