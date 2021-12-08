@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WebApiAutores",
+    "\\WebApiAutores\\WebApiAutores",
+    "\\WebApiAutores\\WebApiAutores\\Controllers"
   ],
-  "SelectedNode": "\\C:\\Users\\Alons\\Source\\Repos\\CSharpAutoresBasicProyect",
+  "SelectedNode": "\\WebApiAutores\\WebApiAutores\\Controllers\\AutoresController.cs",
   "PreviewInSolutionExplorer": false
 }
