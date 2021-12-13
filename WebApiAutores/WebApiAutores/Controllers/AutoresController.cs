@@ -18,8 +18,20 @@ namespace WebApiAutores.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Autor>>> Get()
         {
-            return await dbContext.Autores.Include(x => x.Libros).ToListAsync();   
+            return await dbContext.Autores.Include(x => x.Libros).ToListAsync();
         }
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<Autor>> Get(int id)
+        {
+            var autor =  await dbContext.Autores.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (autor == null)
+                return NotFound();
+
+            return autor;
+        }
+
 
         [HttpGet("first")]
         public async Task<ActionResult<Autor>> FirstAutor()
@@ -28,7 +40,7 @@ namespace WebApiAutores.Controllers
         }
           
         [HttpPost]
-        public async Task<ActionResult> Post(Autor autor)
+        public async Task<ActionResult> Post([FromBody] Autor autor)
         {
             dbContext.Add(autor);
             await dbContext.SaveChangesAsync();
